@@ -25,7 +25,7 @@ SECRET_KEY = 'o6se=f5xyu4151-k3qd9-eczthkqiz%5l+&7!j1xs+zsa)nzu&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['rickandmortyproject.herokuapp.com']    
+ALLOWED_HOSTS = []    
 
 
 # Application definition
