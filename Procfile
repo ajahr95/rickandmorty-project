@@ -1,1 +1,1 @@
-web: gunicorn rickandmorty:app
+web: gunicorn rickandmorty.wsgi --log-file -
