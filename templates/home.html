@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>{{episode.name}}</title>
+<style>
+    .container {
+        padding: 4%;
+        padding-top: 3%;
+        padding-left: 20%;
+        margin:auto;
+    }
+
+    .card-body {
+        border-bottom: 1px solid rgba(0,0,0,.125);
+    }
+
+    .card-position {
+        align-self: center;
+
+    }
+
+    .home-img {
+        width: 100%;
+        height: 20%;
+    }
+
+    .search-width {
+        width: 32rem !important;
+    } 
+
+    .search-container {
+
+        margin:auto;
+    }
+
+</style>  
+</head>
+<body>
+<div class=home-img>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Rick_and_Morty.svg" height="300" width="100%">
+</div>
+    <nav class="navbar navbar-light bg-light">
+        <div class="search-container">
+        <form class="form-inline" action="{%url 'search'%}">
+            <input class="form-control mr-sm-2 search-width" type="search" placeholder="Search Episode, Character or Location" aria-label="Search" name='word'>
+            <button class="btn btn btn-dark my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        </div>
+    </nav>
+<div class="container" >
+        <div class="card card-position" style="width: 40rem;">
+            <div class="card-header">
+            Episodes
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for episode_code, values in episodes %}
+                <li class="list-group-item"><a href="{% url 'episode' values.id %}"> {{episode_code}} - {{values.name}} - {{values.air_date}} </a></li>
+                {%endfor%}
+            </ul>
+        </div>
+</div>
+
+   <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
+
