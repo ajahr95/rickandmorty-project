@@ -287,20 +287,37 @@ def filtered_locations(word):
 
 
 def search_bar(word):
-    
-    characters = filtered_characters(word)
-    episodes = filtered_episodes(word)
-    locations = filtered_locations(word)
 
-    result = {"characters":characters, "episodes":episodes, "locations": locations}
+    word = word.split()
+
+    characters_dict = {}
+    episodes_dict = {}
+    locations_dict = {}
+
+    for w in word:
+
+        characters = filtered_characters(w)
+        for key, value in characters.items():
+            if key not in characters_dict:
+                characters_dict[key] = value
+
+        episodes = filtered_episodes(w)
+        for key, value in episodes.items():
+            if key not in episodes_dict:
+                episodes_dict[key] = value
+
+        locations = filtered_locations(w)
+        for key, value in locations.items():
+            if key not in locations_dict:
+                locations_dict[key] = value
+
+    
+    result = {"characters":characters_dict, "episodes":episodes_dict, "locations": locations_dict}
     return result
 
 def search(request):
 
     word = request.GET['word']
-
-    print("WORD")
-    print(word)
     
     result = search_bar(word)
 
