@@ -1,1 +1,1 @@
-web: gunicorn rickandmortyproject:app
+web: gunicorn rickandmorty:app
