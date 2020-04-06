@@ -188,18 +188,32 @@ def filtered_characters(word):
     url_request = "https://integracion-rick-morty-api.herokuapp.com/api/character/?name=" + str(word)
     characters = requests.get(url_request).json()
 
-    if "results" in characters:
-
-        characters = characters["results"]
-
+    if "info" in characters:
+        number_of_pages = int(characters["info"]["pages"]) + 1
+        is_first = True
+        actual_page = 1
         characters_dict = {}
 
-        for character in characters:
+        while number_of_pages > actual_page:
 
-            characters_dict[character["id"]] = {"id":character["id"], "name": character["name"]}
-    
+            if not is_first:
+
+                new_request = requests.get(url_request+'&page='+ str(actual_page)).json()
+                new_request = new_request["results"]
+
+            else:
+                is_first = False
+                new_request = characters["results"]
+
+            for character in new_request:
+
+                characters_dict[character["id"]] = {"id":character["id"], "name": character["name"]}
+        
+            actual_page += 1
+
     else: 
         return {}
+
 
     return characters_dict
 
@@ -209,17 +223,30 @@ def filtered_episodes(word):
     url_request = "https://integracion-rick-morty-api.herokuapp.com/api/episode/?name=" + str(word)
     episodes = requests.get(url_request).json()
 
-    if "results" in episodes:
-
-        episodes = episodes["results"]
-
+    if "info" in episodes:
+        number_of_pages = int(episodes["info"]["pages"]) + 1
+        is_first = True
+        actual_page = 1
         episodes_dict = {}
 
-        for episode in episodes:
+        while number_of_pages > actual_page:
 
-            episodes_dict[episode["id"]] = {"id":episode["id"], "name": episode["name"]}
-    
-    else:
+            if not is_first:
+
+                new_request = requests.get(url_request+'&page='+ str(actual_page)).json()
+                new_request = new_request["results"]
+
+            else:
+                is_first = False
+                new_request = episodes["results"]
+
+            for episode in new_request:
+
+                episodes_dict[episode["id"]] = {"id":episode["id"], "name": episode["name"]}
+        
+            actual_page += 1
+
+    else: 
         return {}
 
     return episodes_dict
@@ -229,16 +256,31 @@ def filtered_locations(word):
 
     url_request = "https://integracion-rick-morty-api.herokuapp.com/api/location/?name=" + str(word)
     locations = requests.get(url_request).json()
-    if "results" in locations:
-        locations = locations["results"]
+
+    if "info" in locations:
+        number_of_pages = int(locations["info"]["pages"]) + 1
+        is_first = True
+        actual_page = 1
         locations_dict = {}
 
-        for location in locations:
+        while number_of_pages > actual_page:
 
-            locations_dict[location["id"]] = {"id":location["id"], "name": location["name"]}
-    
-    else:
+            if not is_first:
 
+                new_request = requests.get(url_request+'&page='+ str(actual_page)).json()
+                new_request = new_request["results"]
+
+            else:
+                is_first = False
+                new_request = locations["results"]
+
+            for location in new_request:
+
+                locations_dict[location["id"]] = {"id":location["id"], "name": location["name"]}
+        
+            actual_page += 1
+
+    else: 
         return {}
 
     return locations_dict
