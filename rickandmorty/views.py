@@ -19,10 +19,10 @@ def extract_id(character_url):
 def get_all_episodes():
 
     total_episodes = {}
-    first_request = requests.get("https://rickandmortyapi.com/api/episode/").json()
+    first_request = requests.get("https://integracion-rick-morty-api.herokuapp.com/api/episode/").json()
     number_of_pages = int(first_request["info"]["pages"]) + 1
     is_first = True
-    episodes_url = "https://rickandmortyapi.com/api/episode?page="
+    episodes_url = "https://integracion-rick-morty-api.herokuapp.com/api/episode?page="
     actual_page = 1
 
     while number_of_pages > actual_page:
@@ -53,7 +53,7 @@ def get_all_episodes():
 
 def get_one_location(id):
 
-    url_request = "https://rickandmortyapi.com/api/location/" + str(id)
+    url_request = "https://integracion-rick-morty-api.herokuapp.com/api/location/" + str(id)
 
     one_location = requests.get(url_request).json()
 
@@ -84,7 +84,7 @@ def get_one_location(id):
 
 def get_one_episode(id):
 
-    url_request = "https://rickandmortyapi.com/api/episode/" + str(id)
+    url_request = "https://integracion-rick-morty-api.herokuapp.com/api/episode/" + str(id)
 
     one_episode = requests.get(url_request).json()
 
@@ -106,7 +106,7 @@ def get_one_episode(id):
 
 def get_one_character(id):
 
-    url_request = "https://rickandmortyapi.com/api/character/" + str(id)
+    url_request = "https://integracion-rick-morty-api.herokuapp.com/api/character/" + str(id)
 
     one_character = requests.get(url_request).json()
 
@@ -162,7 +162,7 @@ def get_multiple_characters(characters):
     for character in characters:
         characters_str += character + ","
 
-    url_request = "https://rickandmortyapi.com/api/character/" + str(characters_str)
+    url_request = "https://integracion-rick-morty-api.herokuapp.com/api/character/" + str(characters_str)
 
     total_characters = requests.get(url_request).json()
 
@@ -176,7 +176,7 @@ def get_multiple_episodes(episodes):
     for episode in episodes:
         episodes_str += episode + ","
 
-    url_request = "https://rickandmortyapi.com/api/episode/" + str(episodes_str)
+    url_request = "https://integracion-rick-morty-api.herokuapp.com/api/episode/" + str(episodes_str)
 
     total_episodes = requests.get(url_request).json()
 
@@ -185,7 +185,7 @@ def get_multiple_episodes(episodes):
 
 def filtered_characters(word):
     
-    url_request = "https://rickandmortyapi.com/api/character/?name=" + str(word)
+    url_request = "https://integracion-rick-morty-api.herokuapp.com/api/character/?name=" + str(word)
     characters = requests.get(url_request).json()
 
     if "results" in characters:
@@ -206,7 +206,7 @@ def filtered_characters(word):
 
 def filtered_episodes(word):
 
-    url_request = "https://rickandmortyapi.com/api/episode/?name=" + str(word)
+    url_request = "https://integracion-rick-morty-api.herokuapp.com/api/episode/?name=" + str(word)
     episodes = requests.get(url_request).json()
 
     if "results" in episodes:
@@ -227,7 +227,7 @@ def filtered_episodes(word):
 
 def filtered_locations(word):
 
-    url_request = "https://rickandmortyapi.com/api/location/?name=" + str(word)
+    url_request = "https://integracion-rick-morty-api.herokuapp.com/api/location/?name=" + str(word)
     locations = requests.get(url_request).json()
     if "results" in locations:
         locations = locations["results"]
